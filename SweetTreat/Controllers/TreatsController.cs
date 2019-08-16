@@ -10,7 +10,7 @@ namespace SweetTreat.Controllers
     public class TreatsController : Controller
     {
         private readonly SweetTreatContext _db;
-        public TreatsController( SweetTreatContext db)
+        public TreatsController(SweetTreatContext db)
         {
             _db = db;
         }
@@ -18,6 +18,15 @@ namespace SweetTreat.Controllers
         public ActionResult Index()
         {
             return View(_db.Treats.ToList());
+        }
+
+        public ActionResult Details(int id)
+        {
+            var thisTreat = _db.Treats
+                .Include(treat => treat.Flavors)
+                .ThenInclude(join => join.Flavor)
+                .FirstOrDefault(treat => treat.ID == id);
+            return View(thisTreat);
         }
     }
 }

@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Create a Treat!";
+}
+
+@model SweetTreat.Models.Treat
+
+<div class="text-center">
+    <h1 class="display-4">New Treat Form</h1>
+</div>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name)
+
+        @Html.Label("Select Flavors")
+        @Html.CheckBox("Flavors", true)
+
+    <input type="submit" value="Add new Treat" class="btn btn-default" />
+        
+    }
+</div>

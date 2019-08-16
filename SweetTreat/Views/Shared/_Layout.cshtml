@@ -48,7 +48,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Sweet Treat - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2019 - Sweet Treat - <a asp-area="" asp-controller="Treats" asp-action="Create">Privacy</a>
+            @Html.ActionLink("Create a Treat!", "Create", "Treats")
         </div>
     </footer>
 

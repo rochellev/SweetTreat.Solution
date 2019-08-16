@@ -28,5 +28,11 @@ namespace SweetTreat.Controllers
                 .FirstOrDefault(treat => treat.ID == id);
             return View(thisTreat);
         }
+
+        public ActionResult Create()
+        {
+            ViewBag.FlavorId = new SelectList(_db.Flavors, "ID", "Name");
+            return View();
+        }
     }
 }

@@ -20,7 +20,7 @@
 
 ```sh
 $ git clone https://github.com/rochellev/SweetTreat.Solution.git
-$ cd 
+$ cd .\SweetTreat.Solution\SweetTreat
 $ dotnet restore
 $ dotnet run
 ```

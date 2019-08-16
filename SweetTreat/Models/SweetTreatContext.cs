@@ -6,6 +6,8 @@ namespace SweetTreat.Models
     {
         // tables
         public virtual DbSet<Treat> Treats {get; set;}
+        public virtual DbSet<Flavor> Flavors {get; set;}
+        public virtual DbSet<TreatFlavor> TreatFlavor {get; set;}
 
 
         // constructor

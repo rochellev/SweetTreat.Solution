@@ -54,3 +54,5 @@ $ dotnet run
     * Treat (object)
     * Flavor (object)
     
+    ## Bugs
+    * check boxes on the new treat form --- moving on to making flavors

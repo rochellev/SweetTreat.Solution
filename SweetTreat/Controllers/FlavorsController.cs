@@ -7,26 +7,26 @@ using SweetTreat.Models;
 
 namespace SweetTreat.Controllers
 {
-    public class TreatsController : Controller
+    public class FlavorsController : Controller
     {
         private readonly SweetTreatContext _db;
-        public TreatsController(SweetTreatContext db)
+        public FlavorsController(SweetTreatContext db)
         {
             _db = db;
         }
 
         public ActionResult Index()
         {
-            return View(_db.Treats.ToList());
+            return View(_db.Flavors.ToList());
         }
 
         public ActionResult Details(int id)
         {
-            var thisTreat = _db.Treats
-                .Include(treat => treat.Flavors)
-                .ThenInclude(join => join.Flavor)
-                .FirstOrDefault(treat => treat.ID == id);
-            return View(thisTreat);
+            var thisFlavor = _db.Flavors
+                .Include(flavor => flavor.Treats)
+                .ThenInclude(join => join.Treat)
+                .FirstOrDefault(flavor => flavor.ID == id);
+            return View(thisFlavor);
         }
 
         public ActionResult Create()
@@ -36,12 +36,12 @@ namespace SweetTreat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Treat treat, int FlavorId)
+        public ActionResult Create(Flavor flavor, int TreatId)
         {
-            _db.Treats.Add(treat);
-            if (FlavorId != 0)
+            _db.Flavors.Add(flavor);
+            if (TreatId != 0)
             {
-                _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.ID });
+                _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.ID });
             }
             _db.SaveChanges();
             return RedirectToAction("Index");

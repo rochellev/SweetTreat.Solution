@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Flavors!";
+}
+
+@using SweetTreat.Models;
+@model List<SweetTreat.Models.Flavor>;
+
+<div class="text-center">
+    <h1 class="display-4">Flavor Catalog</h1>
+</div>
+
+<div class="container">
+@if (@Model.Count == 0)
+{
+  <br>
+  <h3 class="text-center">No Flavors have been added yet! <br> @Html.ActionLink("Create a Flavor!", "Create", "Flavors") </h3>
+} 
+
+@foreach (Flavor flavor in Model)
+{
+  <li>@Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.ID })</li>
+}
+
+</div>

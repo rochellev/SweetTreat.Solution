@@ -55,4 +55,4 @@ $ dotnet run
     * Flavor (object)
     
     ## Bugs
-    * check boxes on the new treat form --- moving on to making flavors
+    * check boxes on the new treat form 

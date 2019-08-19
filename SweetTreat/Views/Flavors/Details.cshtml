@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Flavor Details!";
+}
+
+@model SweetTreat.Models.Flavor
+
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+
+@if(@Model.Treats.Count == 0)
+{
+    <p>This flavor does not have any treats</p>
+}
+else
+{
+    <h4>Treats that have this flavor:</h4>
+    <ul>
+        @foreach (var join in Model.Treats)
+        {
+            <li>@join.Treat.Name</li>
+            
+        }
+    </ul>
+}

@@ -23,6 +23,7 @@
 $ git clone https://github.com/rochellev/SweetTreat.Solution.git
 $ cd .\SweetTreat.Solution\SweetTreat
 $ dotnet restore
+$ dotnet ef database update
 $ dotnet run
 ```
 

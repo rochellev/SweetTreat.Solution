@@ -31,7 +31,6 @@ namespace SweetTreat.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.FlavorId = new SelectList(_db.Flavors, "ID", "Name");
             return View();
         }
 

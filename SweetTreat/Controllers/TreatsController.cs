@@ -3,21 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using SweetTreat.Models;
 
 namespace SweetTreat.Controllers
 {
+    [Authorize]
     public class TreatsController : Controller
     {
         private readonly SweetTreatContext _db;
-        public TreatsController(SweetTreatContext db)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public TreatsController(SweetTreatContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_db.Treats.ToList());
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            return View(_db.Treats.Where(x => x.User.Id == currentUser.Id));
         }
 
         public ActionResult Details(int id)
@@ -36,8 +45,11 @@ namespace SweetTreat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Treat treat, int FlavorId)
+        public async Task<ActionResult> Create(Treat treat, int FlavorId)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+            treat.User = currentUser;
             _db.Treats.Add(treat);
             if (FlavorId != 0)
             {

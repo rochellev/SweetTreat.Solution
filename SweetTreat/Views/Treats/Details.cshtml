@@ -3,8 +3,21 @@
 }
 
 
-
+@using SweetTreat.Models
 
 @model SweetTreat.Models.Treat
 
-<h2>@Html.DisplayNameFor(model => model.Name)</h2>
+<h2>@Model.Name</h2>
+<!-- print the treat's flavors here -->
+@if(@Model.Flavors.Count == 0)
+{
+    <p>This treat does not belong to any Flavor</p>
+}
+else
+{
+    @foreach(var join in Model.Flavors)
+    {
+        <h4>@join.Flavor.Name</h4>
+    }
+
+}

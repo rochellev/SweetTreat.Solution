@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Delete Treat";
+}
+
+
+@using SweetTreat.Models
+
+@model SweetTreat.Models.Treat
+
+<h2>Are you sure you want to Delete... @Model.Name ??</h2>
+
+@using(Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}

@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model SweetTreat.Models.Treat
+
+<h1>Edit</h1>
+
+<h3>Edit this treat: @Model.Name</h3>
+
+@using(Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ID)
+
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    @Html.Label("Select Flavor")
+    @Html.DropDownList("FlavorId")
+
+    <input type="submit" value="Save!"/>
+}
